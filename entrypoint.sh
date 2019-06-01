@@ -2,7 +2,7 @@
 
 set -o errexit
 
-if [ ! "Xtrue" = "X$(jq -r '.action.published' "$GITHUB_EVENT_PATH")" ]; then
+if [ ! "Xpublished" = "X$(jq -r '.action' "$GITHUB_EVENT_PATH")" ]; then
     echo "Release was not published, skipping."
     exit 78
 fi
@@ -36,7 +36,7 @@ git config --global user.email "${BREW_PR_AUTHOR_EMAIL}"
 
 if [ -z "${BREW_PR_FORMULA}" ]; then
     if [ -z "$1" ]; then
-	BREW_PR_FORMULA="$(jq -r '.release.repository.name' "$GITHUB_EVENT_PATH")"
+	BREW_PR_FORMULA="$(jq -r '.repository.name' "$GITHUB_EVENT_PATH")"
     else
 	BREW_PR_FORMULA="$1"
     fi
