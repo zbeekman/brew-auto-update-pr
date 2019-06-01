@@ -2,6 +2,10 @@
 
 set -o errexit
 
+env | grep HOMEBREW
+
+brew tap
+
 if [ ! "Xpublished" = "X$(jq -r '.action' "$GITHUB_EVENT_PATH")" ]; then
     echo "Release was not published, skipping."
     exit 78
