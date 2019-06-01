@@ -28,7 +28,7 @@ if [ -z "${BREW_PR_AUTHOR}" ] ; then
     BREW_PR_AUTHOR="$(jq -r '.release.author.login' "$GITHUB_EVENT_PATH")"
 fi
 if [ -z "${BREW_PR_AUTHOR_EMAIL}" ] ; then
-     BREW_PR_AUTHOR_EMAIL="$(jw -r '.release.author.html_url' "$GITHUB_EVENT_PATH")"
+     BREW_PR_AUTHOR_EMAIL="$(jq -r '.release.author.html_url' "$GITHUB_EVENT_PATH")"
 fi
 
 git config --global user.name "${BREW_PR_AUTHOR}"
