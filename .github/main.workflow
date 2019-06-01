@@ -5,5 +5,4 @@ workflow "New workflow" {
 
 action "Homebrew bump formula pr" {
   uses = "./"
-  args = "hello"
 }
