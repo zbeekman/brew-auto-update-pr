@@ -101,8 +101,8 @@ else
     old_file=${old_url##*/}
     new_file="$(echo "${old_file}" | sed "s/${old_version}/${tag}/g")"
     echo "$num_release_assets release assets found, getting names and urls..."
-    release_assets_urls="$(jq -r '.release.assets.[].browser_download_url' "$GITHUB_EVENT_PATH")"
-    release_assets_names="$(jq -r '.release.assets.[].name' "$GITHUB_EVENT_PATH")"
+    release_assets_urls="$(jq -r '.assets.[].browser_download_url' "$GITHUB_EVENT_PATH")"
+    release_assets_names="$(jq -r '.assets.[].name' "$GITHUB_EVENT_PATH")"
     for u in ${release_assets_urls}; do
 	wget "$u"
 	if [ "$u" = "$new_url" ]; then
