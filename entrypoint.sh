@@ -6,10 +6,10 @@ env | grep HOMEBREW || true
 
 brew tap || true
 
-if [ ! "Xpublished" = "X$(jq -r '.action' "$GITHUB_EVENT_PATH")" ]; then
-    echo "Release was not published, skipping."
-    exit 78
-fi
+# if [ ! "Xpublished" = "X$(jq -r '.action' "$GITHUB_EVENT_PATH")" ]; then
+#     echo "Release was not published, skipping."
+#     exit 78
+# fi
 
 if [ "Xtrue" = "X$(jq -r '.release.draft' "$GITHUB_EVENT_PATH")" ]; then
     echo "This is a draft release... skipping"
