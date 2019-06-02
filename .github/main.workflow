@@ -5,5 +5,5 @@ workflow "New workflow" {
 
 action "Homebrew bump formula pr" {
   uses = "./"
-  args = "glooctl"
+  args = "opencoarrays"
 }
