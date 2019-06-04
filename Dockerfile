@@ -10,7 +10,18 @@ LABEL com.github.actions.description="Open a new Homebrew PR when a new release 
 LABEL com.github.actions.icon="upload"
 LABEL com.github.actions.color="gray-dark"
 
-RUN brew install jq hub
+RUN sudo add-apt-repository ppa:cpick/hub \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+       jq \
+       hub \
+    && rm -rf /var/lib/apt/lists/*
+
+USER linuxbrew
+
+RUN cd $(brew --repository homebrew/core) \
+    && git remote set-url origin https://github.com/homebrew/homebrew-core \
+    && brew update-reset
 
 COPY "entrypoint.sh" "/entrypoint.sh"
 ENTRYPOINT ["/entrypoint.sh"]
